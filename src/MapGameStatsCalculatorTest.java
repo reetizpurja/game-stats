@@ -424,4 +424,32 @@ public class MapGameStatsCalculatorTest {
     assertEquals(12.5, actual, 0.001);
   }
 
+  // wave 5
+  @Test
+  public void highestAverageScorerReturnsAlphabeticallyFirstOnTie() {
+    // arrange
+    String scoreData = "Nupur 20\n"
+        + "Baya 10\n"
+        + "Baya 30\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    // act
+    String actual = calculator.highestAverageScorer();
+
+    // assert
+    assertEquals("Baya", actual);
+  }
+
+  @Test
+  public void highestAverageScorerReturnsOnlyPerson() {
+    // arrange
+    String scoreData = "Nupur 10\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    // act
+    String actual = calculator.highestAverageScorer();
+
+    // assert
+    assertEquals("Nupur", actual);
+  }
 }
