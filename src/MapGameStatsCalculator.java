@@ -137,14 +137,24 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
    * @return the name of the person with the highest average score
    * @throws NoSuchElementException if there is no score data
    */
+  // wave 6( same as wave5 but highest)
   @Override
   public String highestAverageScorer() {
-    // TODO: remove this exception once you have implemented your method!
-    throw new UnsupportedOperationException("Unimplemented method 'highestAverageScorer'");
+    checkScoreData();
+    String bestName = null;
+    double bestAverage = 0;
 
-    // Uncomment this and have it as your first line once you remove the UnsupportedOperationException
-    //checkScoreData();
-  }
+    for(String name : gameCounts.keySet()) {
+      double average = getAverageScore(name);
+
+      if(bestName == null || average > bestAverage
+          || (average == bestAverage && name.compareTo(bestName) < 0)) {
+        bestName = name;
+        bestAverage = average;
+      }
+    }
+    return bestName;
+    }
 
   /**
    * Returns a list of the scores a person has gotten, sorted in ascending order (lowest to highest).
