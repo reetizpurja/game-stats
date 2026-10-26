@@ -329,6 +329,8 @@ public class MapGameStatsCalculatorTest {
   }
 
   // Add more tests here!
+
+  // wave 1
   @Test
   public void gameCountReturnsOneForSinglePersonWithOneGame() {
     // arrange
@@ -353,4 +355,33 @@ public class MapGameStatsCalculatorTest {
     //assert
     assertEquals(2, actual);
   }
+
+  // wave 2
+  @Test
+  public void highScoreReturnsNewHighestScoreForBaya() {
+  // arrange
+    String scoreData = "Baya 30\n" + "Baya 100\n" + "Baya 60\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+    // act
+    int actual = calculator.highScore("Baya");
+    // assert
+    assertEquals(100, actual);
+  }
+
+  @Test
+  public void highScoreKeepsEachPersonSeparate() {
+    // arrange
+    String scoreData = "Nupur 90\n" + "Baya 20\n" + "Nupur 15\n" + "Baya 45\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+    // act
+    int nupurHigh = calculator.highScore("Nupur");
+    int bayaHigh = calculator.highScore("Baya");
+    // assert
+    assertEquals(90, nupurHigh);
+    assertEquals(45, bayaHigh);
+  }
+
+  // wave 3
+  
+
 }
