@@ -381,7 +381,18 @@ public class MapGameStatsCalculatorTest {
     assertEquals(45, bayaHigh);
   }
 
-  // wave 3
-  
+  // wave 3:
+  @Test
+  public void highestScorerReturnsAlphabeticallyFirstOnTie() {
+    // arrange
+    String scoreData = "Nupur 50\n"
+        + "Baya 50\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
 
+    // act
+    String actual = calculator.highestScorer();
+
+    // assert
+    assertEquals("Baya", actual);
+  }
 }

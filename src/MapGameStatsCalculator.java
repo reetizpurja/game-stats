@@ -99,7 +99,7 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
 
     for( String name : highScores.keySet()){
       int score = highScores.get(name);
-      if( bestName == null || score > bestScore){
+      if( bestName == null || score > bestScore  || (score == bestScore && name.compareTo(bestName) < 0)){
         bestName = name;
         bestScore = score;
       }
