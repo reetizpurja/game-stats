@@ -397,5 +397,31 @@ public class MapGameStatsCalculatorTest {
   }
 
   // wave 4:
-  
+  @Test
+  public void getAverageScoreReturnsScoreForSingleGame() {
+    // arrange
+    String scoreData = "Nupur 10\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    // act
+    double actual = calculator.getAverageScore("Nupur");
+
+    // assert
+    assertEquals(10.0, actual, 0.001);
+  }
+
+  @Test
+  public void getAverageScoreKeepsDecimal() {
+    // arrange
+    String scoreData = "Baya 10\n"
+        + "Baya 15\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    // act
+    double actual = calculator.getAverageScore("Baya");
+
+    // assert
+    assertEquals(12.5, actual, 0.001);
+  }
+
 }
