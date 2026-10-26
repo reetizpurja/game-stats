@@ -329,6 +329,28 @@ public class MapGameStatsCalculatorTest {
   }
 
   // Add more tests here!
-  
-  
+  @Test
+  public void gameCountReturnsOneForSinglePersonWithOneGame() {
+    // arrange
+    String scoreData = "Baya 10\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    // act
+    int actual = calculator.gameCount("Baya");
+
+    // assert
+    assertEquals(1, actual);
+  }
+
+  @Test
+  public void gameCountReturnsTwoForNegativeNumbersWithTwoGames() {
+    // arrange
+    String scoreData = "Baya -5\n" + "Baya -35\n";
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+    // act
+    int actual = calculator.gameCount("Baya");
+
+    //assert
+    assertEquals(2, actual);
+  }
 }
